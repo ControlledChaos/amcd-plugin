@@ -87,7 +87,7 @@ class Dashboard {
 	private function dependencies() {
 
         // Get the dashboard widget class.
-        require AMCD_PATH . 'admin/dashboard/class-dashboard-widget.php';
+        // require AMCD_PATH . 'admin/dashboard/class-dashboard-widget.php';
 
         // Get the welcome panel class.
         require AMCD_PATH . 'admin/dashboard/class-welcome.php';
@@ -396,7 +396,7 @@ class Dashboard {
 
         // Enqueue only on the Dashboard screen.
         if ( $screen->id == 'dashboard' ) {
-            wp_enqueue_style( AMCD_ADMIN_SLUG . '-dashboard', AMCD_URL .  'assets/css/dashboard.min.css', [], null, 'screen' );
+            wp_enqueue_style( AMCD_ADMIN_SLUG . '-dashboard', AMCD_URL .  'admin/dashboard/assets/css/dashboard.css', [], null, 'screen' );
         }
 
 	}

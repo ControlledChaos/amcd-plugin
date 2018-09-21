@@ -84,6 +84,19 @@ class Post_Types_Taxes {
 		// Capability to add custom taxonomy templates.
 		require_once AMCD_PATH . 'includes/post-types-taxes/class-taxonomy-templates.php';
 
+		/**
+		 * Include custom fields.
+		 *
+		 * Only if ACF Pro is activated.
+		 */
+		if ( class_exists( 'acf_pro' ) ) {
+			require AMCD_PATH . 'includes/post-types-taxes/fields/class-commercials-fields.php';
+			require AMCD_PATH . 'includes/post-types-taxes/fields/class-features-fields.php';
+			require AMCD_PATH . 'includes/post-types-taxes/fields/class-resume-contact-fields.php';
+			require AMCD_PATH . 'includes/post-types-taxes/fields/class-contact-fields.php';
+			require AMCD_PATH . 'includes/post-types-taxes/fields/class-project-media-fields.php';
+		}
+
 	}
 
 }

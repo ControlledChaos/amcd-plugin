@@ -90,6 +90,9 @@ final class Init {
 		// Various media and media library functionality.
 		require_once AMCD_PATH . 'includes/media/class-media.php';
 
+		// Remove the theme Customizer.
+		require_once AMCD_PATH . 'includes/tools/class-remove-customizer.php';
+
 		/**
 		 * Register custom editor blocks.
 		 *

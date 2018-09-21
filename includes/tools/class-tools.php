@@ -62,7 +62,7 @@ class Tools {
 	 *
 	 * @since  1.0.0
 	 * @access public
-	 * @return void Constructor method is empty.
+	 * @return self
 	 */
 	public function __construct() {
 

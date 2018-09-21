@@ -24,118 +24,67 @@ if ( ! defined( 'WPINC' ) ) {
 $current_user = wp_get_current_user();
 $user_name    = $current_user->display_name;
 
-// Add a filterable subheading.
-$subheading = sprintf(
-	'<h3>%1s %2s %3s.</h3>',
-	esc_html__( 'This is your custom', 'amcd-plugin' ),
-	get_bloginfo( 'name' ),
-	esc_html__( 'welcome panel', 'amcd-plugin' )
-);
-$subheading = apply_filters( 'amcd_welcome_subheading', $subheading );
-
 // Add a filterable description.
-$about_desc = apply_filters( 'amcd_welcome_about', __( 'Put your welcome message here.', 'amcd-plugin' ) );
+$about_desc = apply_filters( 'amcd_welcome_about', __( 'Following are some handy links to help you keep your portfolio fresh.', 'amcd-plugin' ) );
 
-?>
-<?php do_action( 'amcd_before_welcome_panel_content' ); ?>
-<div class="welcome-panel-content custom">
-	<?php do_action( 'amcd_welcome_panel_content_before' ); ?>
+$resume_page  = get_page_by_path( 'resume' );
+$contact_page = get_page_by_path( 'contact' );
 
-	<?php echo sprintf(
-		'<h2>%1s %2s.</h2>',
-		esc_html__( 'Welcome,', 'amcd-plugin' ),
-		$user_name
-	); ?>
-	<p class="about-description"><?php echo $about_desc; ?></p>
-	<?php echo $subheading; ?>
-	<p><?php _e( 'Use this to provide handy links to manage content, informational widgets, or maybe an instructional video.' ); ?></p>
-	<p><?php _e( 'No CSS has been applied to this welcome panel. Add styles as necessary for your project.' ); ?></p>
+if ( $resume_page ) {
+    $resume_link   = admin_url( 'post.php?post=' . $resume_page->ID . '&action=edit' );
+} else {
+    $resume_link = '';
+}
 
-	<div class="welcome-panel-column-container">
-		<?php do_action( 'amcd_welcome_panel_column_container_before' ); ?>
-
-		<div class="welcome-panel-column">
-			<?php do_action( 'amcd_welcome_panel_column_first_before' ); ?>
-
-				<?php if ( is_active_sidebar( 'amcd_welcome_widget_first' ) ) {
-
-					dynamic_sidebar( 'amcd_welcome_widget_first' );
-
-				} else {
-
-					$placeholder = sprintf(
-						'<h3>%1s</h3>',
-						esc_html( 'Column One', 'amcd-plugin' )
-					);
-					$placeholder .= sprintf(
-						'<p><a href="%1s">%2s</a> %3s.</p>',
-						admin_url( 'widgets.php' ),
-						__( 'Add a widget', 'amcd-plugin' ),
-						__( 'to this area', 'amcd-plugin' )
-					);
-
-					echo $placeholder;
-
-				} ?>
-
-			<?php do_action( 'amcd_welcome_panel_column_first_after' ); ?>
-		</div>
-		<div class="welcome-panel-column">
-			<?php do_action( 'amcd_welcome_panel_column_second_before' ); ?>
-
-			<?php if ( is_active_sidebar( 'amcd_welcome_widget_second' ) ) {
-
-					dynamic_sidebar( 'amcd_welcome_widget_second' );
-
-				} else {
-
-					$placeholder = sprintf(
-						'<h3>%1s</h3>',
-						esc_html( 'Column Two', 'amcd-plugin' )
-					);
-					$placeholder .= sprintf(
-						'<p><a href="%1s">%2s</a> %3s.</p>',
-						admin_url( 'widgets.php' ),
-						__( 'Add a widget', 'amcd-plugin' ),
-						__( 'to this area', 'amcd-plugin' )
-					);
-
-					echo $placeholder;
-
-				} ?>
-
-			<?php do_action( 'amcd_welcome_panel_column_second_after' ); ?>
-		</div>
-		<div class="welcome-panel-column welcome-panel-last">
-			<?php do_action( 'amcd_welcome_panel_column_last_before' ); ?>
-
-			<?php if ( is_active_sidebar( 'amcd_welcome_widget_last' ) ) {
-
-					dynamic_sidebar( 'amcd_welcome_widget_last' );
-
-				} else {
-
-					$placeholder = sprintf(
-						'<h3>%1s</h3>',
-						esc_html( 'Column Three', 'amcd-plugin' )
-					);
-					$placeholder .= sprintf(
-						'<p><a href="%1s">%2s</a> %3s.</p>',
-						admin_url( 'widgets.php' ),
-						__( 'Add a widget', 'amcd-plugin' ),
-						__( 'to this area', 'amcd-plugin' )
-					);
-
-					echo $placeholder;
-
-				} ?>
-
-			<?php do_action( 'amcd_welcome_panel_column_last_after' ); ?>
-		</div>
-
-		<?php do_action( 'amcd_welcome_panel_column_container_after' ); ?>
-	</div>
-
-	<?php do_action( 'amcd_welcome_panel_content_after' ); ?>
+if ( $contact_page ) {
+    $contact_link   = admin_url( 'post.php?post=' . $contact_page->ID . '&action=edit' );
+} else {
+    $contact_link = '';
+} ?>
+<?php echo sprintf(
+	'<h2>%1s %2s.</h2>',
+	esc_html__( 'Welcome,', 'amcd-plugin' ),
+	$user_name
+); ?>
+<p class="about-description"><?php echo $about_desc; ?></p>
+<div class="amcd-dashboard-summary">
+    <?php wp_dashboard_right_now(); ?>
 </div>
-<?php do_action( 'amcd_after_welcome_panel_content' ); ?>
+<div class="amcd-dashboard-post-managment">
+    <header class="amcd-dashboard-section-header">
+        <h3><?php _e( 'Manage Your Portfolio', 'amcd-plugin' ); ?></h3>
+    </header>
+    <ul class="amcd-dashboard-post-type-actions">
+        <li>
+            <h4><?php _e( 'Features', 'amcd-plugin' ); ?></h4>
+            <div class="amcd-dashboard-post-type-actions-icon features-icon"><span class="dashicons dashicons-format-video"></span></div>
+            <p>
+                <a href="<?php echo admin_url( 'post-new.php?post_type=amcd_features' ); ?>"><?php _e( 'Add New', 'amcd-plugin' ); ?></a>
+                <a href="<?php echo admin_url( 'edit.php?post_type=amcd_features' ); ?>"><?php _e( 'View List', 'amcd-plugin' ); ?></a>
+            </p>
+        </li>
+        <li>
+            <h4><?php _e( 'Commercials', 'amcd-plugin' ); ?></h4>
+            <div class="amcd-dashboard-post-type-actions-icon commercials-icon"><span class="dashicons dashicons-megaphone"></span></div>
+            <p>
+                <a href="<?php echo admin_url( 'post-new.php?post_type=amcd_commercials' ); ?>"><?php _e( 'Add New', 'amcd-plugin' ); ?></a>
+                <a href="<?php echo admin_url( 'edit.php?post_type=amcd_commercials' ); ?>"><?php _e( 'View List', 'amcd-plugin' ); ?></a>
+            </p>
+		</li>
+		<li>
+            <h4><?php _e( 'Media', 'amcd-plugin' ); ?></h4>
+            <div class="amcd-dashboard-content-actions-icon front-icon"><span class="dashicons dashicons-format-image"></span></div>
+            <p>
+                <a href="<?php echo admin_url( 'media-new.php' ); ?>"><?php _e( 'Add New', 'amcd-plugin' ); ?></a>
+                <a href="<?php echo admin_url( 'upload.php' ); ?>"><?php _e( 'Manage', 'amcd-plugin' ); ?></a>
+            </p>
+		</li>
+		<li>
+            <h4><?php _e( 'Contact', 'amcd-plugin' ); ?></h4>
+            <div class="amcd-dashboard-content-actions-icon contact-icon"><span class="dashicons dashicons-email"></span></div>
+            <p>
+                <a href="<?php echo $contact_link; ?>"><?php _e( 'Manage Info', 'amcd-plugin' ); ?></a>
+            </p>
+        </li>
+    </ul>
+</div>

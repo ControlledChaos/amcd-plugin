@@ -93,6 +93,9 @@ class Welcome {
 
 			// Register the welcome panel areas.
 			add_action( 'widgets_init', [ $this, 'widget_areas' ], 25 );
+
+			// Enqueue welcome panel styles.
+			add_action( 'admin_enqueue_scripts', [ $this, 'styles' ] );
 		}
 
 	}
@@ -193,7 +196,7 @@ class Welcome {
 
         // Enqueue only on the Dashboard screen.
         if ( $screen->id == 'dashboard' ) {
-            wp_enqueue_style( AMCD_ADMIN_SLUG . '-welcome', AMCD_URL .  'assets/css/welcome.min.css', [], null, 'screen' );
+            wp_enqueue_style( AMCD_ADMIN_SLUG . '-welcome', AMCD_URL .  'admin/dashboard/assets/css/welcome.css', [], null, 'screen' );
         }
 
 	}

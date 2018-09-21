@@ -50,94 +50,136 @@ final class Post_Types_Register {
     public function register() {
 
         /**
-         * Post Type: Sample custom post (Custom Posts).
-         *
-         * Renaming:
-         * Search case "Custom Post" and replace with your post type capitalized name.
-         * Search case "custom post" and replace with your post type lowercase name.
-         * Search case "amcd_post_type" and replace with your post type database name.
-         * Search case "custom-posts" and replace with your post type archive permalink slug.
-         */
+		 * Post Type: Film+TV.
+		 */
 
-        $labels = [
-            'name'                  => __( 'Custom Posts', 'amcd-plugin' ),
-            'singular_name'         => __( 'Custom Post', 'amcd-plugin' ),
-            'menu_name'             => __( 'Custom Posts', 'amcd-plugin' ),
-            'all_items'             => __( 'All Custom Posts', 'amcd-plugin' ),
-            'add_new'               => __( 'Add New', 'amcd-plugin' ),
-            'add_new_item'          => __( 'Add New Custom Post', 'amcd-plugin' ),
-            'edit_item'             => __( 'Edit Custom Post', 'amcd-plugin' ),
-            'new_item'              => __( 'New Custom Post', 'amcd-plugin' ),
-            'view_item'             => __( 'View Custom Post', 'amcd-plugin' ),
-            'view_items'            => __( 'View Custom Posts', 'amcd-plugin' ),
-            'search_items'          => __( 'Search Custom Posts', 'amcd-plugin' ),
-            'not_found'             => __( 'No Custom Posts Found', 'amcd-plugin' ),
-            'not_found_in_trash'    => __( 'No Custom Posts Found in Trash', 'amcd-plugin' ),
-            'parent_item_colon'     => __( 'Parent Custom Post', 'amcd-plugin' ),
-            'featured_image'        => __( 'Featured image for this custom post', 'amcd-plugin' ),
-            'set_featured_image'    => __( 'Set featured image for this custom post', 'amcd-plugin' ),
-            'remove_featured_image' => __( 'Remove featured image for this custom post', 'amcd-plugin' ),
-            'use_featured_image'    => __( 'Use as featured image for this custom post', 'amcd-plugin' ),
-            'archives'              => __( 'Custom Post archives', 'amcd-plugin' ),
-            'insert_into_item'      => __( 'Insert into Custom Post', 'amcd-plugin' ),
-            'uploaded_to_this_item' => __( 'Uploaded to this Custom Post', 'amcd-plugin' ),
-            'filter_items_list'     => __( 'Filter Custom Posts', 'amcd-plugin' ),
-            'items_list_navigation' => __( 'Custom Posts list navigation', 'amcd-plugin' ),
-            'items_list'            => __( 'Custom Posts List', 'amcd-plugin' ),
-            'attributes'            => __( 'Custom Post Attributes', 'amcd-plugin' ),
-            'parent_item_colon'     => __( 'Parent Custom Post', 'amcd-plugin' ),
+		$labels = [
+			'name'                  => __( 'Features', 'amcd-plugin' ),
+			'singular_name'         => __( 'Feature Project', 'amcd-plugin' ),
+			'menu_name'             => __( 'Features', 'amcd-plugin' ),
+			'all_items'             => __( 'All Features', 'amcd-plugin' ),
+			'add_new'               => __( 'Add New', 'amcd-plugin' ),
+			'add_new_item'          => __( 'Add New Feature Project', 'amcd-plugin' ),
+			'edit_item'             => __( 'Edit Project', 'amcd-plugin' ),
+			'new_item'              => __( 'New Feature Project', 'amcd-plugin' ),
+			'view_item'             => __( 'View Project', 'amcd-plugin' ),
+			'view_items'            => __( 'View Features', 'amcd-plugin' ),
+			'search_items'          => __( 'Search Features', 'amcd-plugin' ),
+			'not_found'             => __( 'No Features Found', 'amcd-plugin' ),
+			'not_found_in_trash'    => __( 'No Features Found in Trash', 'amcd-plugin' ),
+			'featured_image'        => __( 'Featured image for this project', 'amcd-plugin' ),
+			'set_featured_image'    => __( 'Set featured image for this project', 'amcd-plugin' ),
+			'remove_featured_image' => __( 'Remove featured image for this project', 'amcd-plugin' ),
+			'use_featured_image'    => __( 'Use as featured image for this project', 'amcd-plugin' ),
+			'archives'              => __( 'Feature archives', 'amcd-plugin' ),
+			'insert_into_item'      => __( 'Insert into Project', 'amcd-plugin' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this Project', 'amcd-plugin' ),
+			'filter_items_list'     => __( 'Filter Features', 'amcd-plugin' ),
+			'items_list_navigation' => __( 'Features list navigation', 'amcd-plugin' ),
+			'items_list'            => __( 'Features list', 'amcd-plugin' ),
+			'attributes'            => __( 'Feature Attributes', 'amcd-plugin' ),
+			'parent_item_colon'     => __( 'Parent Project', 'amcd-plugin' ),
+		];
+
+		$args = [
+			'label'               => __( 'Features', 'amcd-plugin' ),
+			'labels'              => $labels,
+			'description'         => __( '', 'amcd-plugin' ),
+			'public'              => true,
+			'publicly_queryable'  => true,
+			'show_ui'             => true,
+			'show_in_rest'        => false,
+			'rest_base'           => '',
+			'has_archive'         => true,
+			'show_in_menu'        => true,
+			'exclude_from_search' => false,
+			'capability_type'     => 'post',
+			'map_meta_cap'        => true,
+			'hierarchical'        => false,
+			'rewrite'             => [
+				'slug'       => 'projects',
+				'with_front' => true
+			],
+			'query_var'           => true,
+			'menu_position'       => 5,
+			'menu_icon'           => 'dashicons-format-video',
+			'supports'            => [
+				'title',
+				'page-attributes',
+				'thumbnail'
+			]
         ];
 
-        // Apply a filter to labels for customization.
-        $labels = apply_filters( 'amcd_custom_posts_labels', $labels );
+		register_post_type(
+            'amcd_features',
+            $args
+        );
 
-        $args = [
-            'label'               => __( 'Custom Posts', 'amcd-plugin' ),
-            'labels'              => $labels,
-            'description'         => __( 'Custom post type description.', 'amcd-plugin' ),
-            'public'              => true,
-            'publicly_queryable'  => true,
-            'show_ui'             => true,
-            'show_in_rest'        => false,
-            'rest_base'           => 'amcd_post_type_rest_api',
-            'has_archive'         => true,
-            'show_in_menu'        => true,
-            'exclude_from_search' => false,
-            'capability_type'     => 'post',
-            'map_meta_cap'        => true,
-            'hierarchical'        => false,
-            'rewrite'             => [
-                'slug'       => 'custom-posts',
-                'with_front' => true
-            ],
-            'query_var'           => 'amcd_post_type',
-            'menu_position'       => 5,
-            'menu_icon'           => 'dashicons-admin-post',
-            'supports'            => [
-                'title',
-                'editor',
-                'thumbnail',
-                'excerpt',
-                'trackbacks',
-                'custom-fields',
-                'comments',
-                'revisions',
-                'author',
-                'page-attributes',
-                'post-formats'
-            ],
-            'taxonomies'          => [
-                'category',
-                'post_tag',
-                'amcd_taxonomy' // Change to your custom taxonomy name.
-            ],
-        ];
+		/**
+		 * Post Type: Commercials.
+		 */
 
-        // Apply a filter to arguments for customization.
-        $args = apply_filters( 'amcd_custom_posts_args', $args );
+		$labels = [
+			'name'                  => __( 'Commercials', 'amcd-plugin' ),
+			'singular_name'         => __( 'Commercial', 'amcd-plugin' ),
+			'menu_name'             => __( 'Commercials', 'amcd-plugin' ),
+			'all_items'             => __( 'All Commercials', 'amcd-plugin' ),
+			'add_new'               => __( 'Add New', 'amcd-plugin' ),
+			'add_new_item'          => __( 'Add New Commercial', 'amcd-plugin' ),
+			'edit_item'             => __( 'Edit Commercial', 'amcd-plugin' ),
+			'new_item'              => __( 'New Commercial', 'amcd-plugin' ),
+			'view_item'             => __( 'View Commercial', 'amcd-plugin' ),
+			'view_items'            => __( 'View Commercials', 'amcd-plugin' ),
+			'search_items'          => __( 'Search Commercials', 'amcd-plugin' ),
+			'not_found'             => __( 'No Commercials Found', 'amcd-plugin' ),
+			'not_found_in_trash'    => __( 'No Commercials Found in Trash', 'amcd-plugin' ),
+			'featured_image'        => __( 'Featured image for this commercial', 'amcd-plugin' ),
+			'set_featured_image'    => __( 'Set featured image for this commercial', 'amcd-plugin' ),
+			'remove_featured_image' => __( 'Remove featured image for this commercial', 'amcd-plugin' ),
+			'use_featured_image'    => __( 'Use as featured image for this commercial', 'amcd-plugin' ),
+			'archives'              => __( 'Commercial archives', 'amcd-plugin' ),
+			'insert_into_item'      => __( 'Insert into Commercial', 'amcd-plugin' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this Commercial', 'amcd-plugin' ),
+			'filter_items_list'     => __( 'Filter Commercials', 'amcd-plugin' ),
+			'items_list_navigation' => __( 'Commercials list navigation', 'amcd-plugin' ),
+			'items_list'            => __( 'Commercials list', 'amcd-plugin' ),
+			'attributes'            => __( 'Commercial Attributes', 'amcd-plugin' ),
+			'parent_item_colon'     => __( 'Parent Commercial', 'amcd-plugin' ),
+		];
 
-        register_post_type(
-            'amcd_post_type',
+		$args = [
+			'label'               => __( 'Commercials', 'amcd-plugin' ),
+			'labels'              => $labels,
+			'description'         => __( '', 'amcd-plugin' ),
+			'public'              => true,
+			'publicly_queryable'  => true,
+			'show_ui'             => true,
+			'show_in_rest'        => false,
+			'rest_base'           => '',
+			'has_archive'         => true,
+			'show_in_menu'        => true,
+			'exclude_from_search' => false,
+			'capability_type'     => 'post',
+			'map_meta_cap'        => true,
+			'hierarchical'        => false,
+			'rewrite'             => [
+				'slug'       => 'commercials',
+				'with_front' => true
+			],
+			'query_var'           => true,
+			'menu_position'       => 5,
+			'menu_icon'           => 'dashicons-megaphone',
+			'supports'            => [
+				'title',
+				'page-attributes',
+				'thumbnail'
+			],
+			'taxonomies'          => [
+				'post_tag'
+			],
+		];
+		register_post_type(
+            'amcd_commercials',
             $args
         );
 
