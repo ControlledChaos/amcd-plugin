@@ -81,29 +81,10 @@ class Tools {
 	private function dependencies() {
 
 		// Minify HTML source code.
-		$debug = get_option( 'amcd_debug_mode' );
-
-		require_once AMCD_PATH . 'includes/tools/class-debug.php';
-
-		// Include the RTL (right to left) test if option selected.
-		$rtl = get_option( 'amcd_rtl_test' );
-
-		if ( $rtl ) {
-			require_once AMCD_PATH . 'includes/tools/class-rtl-test.php';
-		}
-
-		// Minify HTML source code.
 		$minify = get_option( 'amcd_html_minify' );
 
 		if ( $minify ) {
 			require_once AMCD_PATH . 'includes/tools/class-minify-process.php';
-		}
-
-		// Live theme test.
-		$theme_test = get_option( 'amcd_theme_test' );
-
-		if ( $theme_test ) {
-			include_once AMCD_PATH . 'includes/tools/class-theme-test.php';
 		}
 
 	}

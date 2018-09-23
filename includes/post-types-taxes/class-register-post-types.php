@@ -173,10 +173,7 @@ final class Post_Types_Register {
 				'title',
 				'page-attributes',
 				'thumbnail'
-			],
-			'taxonomies'          => [
-				'post_tag'
-			],
+			]
 		];
 		register_post_type(
             'amcd_commercials',

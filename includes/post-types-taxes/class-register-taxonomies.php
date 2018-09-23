@@ -49,44 +49,34 @@ final class Taxonomies_Register {
      */
     public function register() {
 
-        /**
-         * Taxonomy: Sample taxonomy (Taxonomy).
-         *
-         * Renaming:
-         * Search case "Taxonomy" and replace with your post type singular name.
-         * Search case "Taxonomies" and replace with your post type plural name.
-         * Search case "amcd_taxonomy" and replace with your taxonomy database name.
-         * Search case "taxonomies" and replace with your taxonomy permalink slug.
-         */
-
         $labels = [
-            'name'                       => __( 'Taxonomies', 'amcd-plugin' ),
-            'singular_name'              => __( 'Taxonomy', 'amcd-plugin' ),
-            'menu_name'                  => __( 'Taxonomy', 'amcd-plugin' ),
-            'all_items'                  => __( 'All Taxonomies', 'amcd-plugin' ),
-            'edit_item'                  => __( 'Edit Taxonomy', 'amcd-plugin' ),
-            'view_item'                  => __( 'View Taxonomy', 'amcd-plugin' ),
-            'update_item'                => __( 'Update Taxonomy', 'amcd-plugin' ),
-            'add_new_item'               => __( 'Add New Taxonomy', 'amcd-plugin' ),
-            'new_item_name'              => __( 'New Taxonomy', 'amcd-plugin' ),
-            'parent_item'                => __( 'Parent Taxonomy', 'amcd-plugin' ),
-            'parent_item_colon'          => __( 'Parent Taxonomy', 'amcd-plugin' ),
-            'popular_items'              => __( 'Popular Taxonomies', 'amcd-plugin' ),
-            'separate_items_with_commas' => __( 'Separate Taxonomies with commas', 'amcd-plugin' ),
-            'add_or_remove_items'        => __( 'Add or Remove Taxonomies', 'amcd-plugin' ),
-            'choose_from_most_used'      => __( 'Choose from the most used Taxonomies', 'amcd-plugin' ),
-            'not_found'                  => __( 'No Taxonomies Found', 'amcd-plugin' ),
-            'no_terms'                   => __( 'No Taxonomies', 'amcd-plugin' ),
-            'items_list_navigation'      => __( 'Taxonomies List Navigation', 'amcd-plugin' ),
-            'items_list'                 => __( 'Taxonomies List', 'amcd-plugin' )
+            'name'                       => __( 'Media Types', 'amcd-plugin' ),
+            'singular_name'              => __( 'Media Type', 'amcd-plugin' ),
+            'menu_name'                  => __( 'Media Type', 'amcd-plugin' ),
+            'all_items'                  => __( 'All Media Types', 'amcd-plugin' ),
+            'edit_item'                  => __( 'Edit Media Type', 'amcd-plugin' ),
+            'view_item'                  => __( 'View Media Type', 'amcd-plugin' ),
+            'update_item'                => __( 'Update Media Type', 'amcd-plugin' ),
+            'add_new_item'               => __( 'Add New Media Type', 'amcd-plugin' ),
+            'new_item_name'              => __( 'New Media Type', 'amcd-plugin' ),
+            'parent_item'                => __( 'Parent Media Type', 'amcd-plugin' ),
+            'parent_item_colon'          => __( 'Parent Media Type', 'amcd-plugin' ),
+            'popular_items'              => __( 'Popular Media Types', 'amcd-plugin' ),
+            'separate_items_with_commas' => __( 'Separate Media Types with commas', 'amcd-plugin' ),
+            'add_or_remove_items'        => __( 'Add or Remove Media Types', 'amcd-plugin' ),
+            'choose_from_most_used'      => __( 'Choose from the most used Media Types', 'amcd-plugin' ),
+            'not_found'                  => __( 'No Media Types Found', 'amcd-plugin' ),
+            'no_terms'                   => __( 'No Media Types', 'amcd-plugin' ),
+            'items_list_navigation'      => __( 'Media Types List Navigation', 'amcd-plugin' ),
+            'items_list'                 => __( 'Media Types List', 'amcd-plugin' )
         ];
 
         $args = [
-            'label'              => __( 'Taxonomies', 'amcd-plugin' ),
+            'label'              => __( 'Media Types', 'amcd-plugin' ),
             'labels'             => $labels,
             'public'             => true,
             'hierarchical'       => false,
-            'label'              => 'Taxonomies',
+            'label'              => 'Media Types',
             'show_ui'            => true,
             'show_in_menu'       => true,
             'show_in_nav_menus'  => true,
@@ -105,7 +95,7 @@ final class Taxonomies_Register {
         register_taxonomy(
             'amcd_taxonomy',
             [
-                'amcd_post_type'
+                'attachment'
             ],
             $args
         );

@@ -152,9 +152,7 @@ class Frontend {
 	public function deregister_jquery() {
 
 		if ( ! is_customize_preview() ) {
-
 			wp_deregister_script( 'jquery' );
-
 		}
 
 	}
@@ -170,7 +168,7 @@ class Frontend {
 
 		if ( ! is_customize_preview() ) {
 
-			$jquery = file_get_contents( AMCD_PATH . '/assets/js/jquery.min.js' );
+			$jquery = file_get_contents( AMCD_PATH . 'frontend/assets/js/jquery.min.js' );
 
 			echo '<!-- jQuery --><script>' . $jquery . '</script>';
 

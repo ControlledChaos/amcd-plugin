@@ -67,6 +67,10 @@ final class Init {
 		remove_filter( 'the_content', 'capital_P_dangit', 11 );
 		remove_filter( 'comment_text', 'capital_P_dangit', 31 );
 
+		// Remove contextual help tabs.
+		add_filter( 'contextual_help', [ $this, 'remove_help_tabs' ], 999, 3 );
+		add_filter( 'screen_options_show_screen', [ $this, 'remove_screen_options' ], 10, 2 );
+
 	}
 
 	/**
@@ -107,11 +111,56 @@ final class Init {
 		// Post types and taxonomies.
 		require_once AMCD_PATH . 'includes/post-types-taxes/class-post-type-tax.php';
 
-		// User funtionality.
-		require_once AMCD_PATH . 'includes/users/class-users.php';
-
 		// Dev and maintenance tools.
 		require_once AMCD_PATH . 'includes/tools/class-tools.php';
+
+	}
+
+	/**
+	 * Removes the contextual help tab.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  array $old_help
+	 * @param  int $screen_id
+	 * @param  obj $screen
+	 * @return array Returns the amended array of tabs.
+	 */
+	public function remove_help_tabs( $old_help, $screen_id, $screen ) {
+
+		$screen->remove_help_tabs();
+
+		return $old_help;
+
+
+	}
+
+	/**
+	 * Removes screen options tab.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  boolean $display_boolean
+	 * @param  object $wp_screen_object
+	 * @return boolean Returns false for the screens in the array.
+	 */
+	public function remove_screen_options( $display_boolean, $wp_screen_object ) {
+
+		$blacklist = [
+			// 'post.php',
+			// 'post-new.php',
+			'index.php',
+			// 'edit.php'
+		];
+
+		if ( in_array( $GLOBALS['pagenow'], $blacklist ) ) {
+			$wp_screen_object->render_screen_layout();
+			$wp_screen_object->render_per_page_options();
+
+			return false;
+		}
+
+		return true;
 
 	}
 
