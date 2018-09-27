@@ -85,6 +85,9 @@ class Admin_Pages {
             add_action( 'manage_pages_custom_column', [ $this, 'image_column_content' ], 10, 2 );
         }
 
+        // Change text in the excerpt metaboxes.
+        add_action( 'add_meta_boxes', [ $this, 'customize_metaboxes' ], 10, 2 );
+
     }
 
     /**
@@ -536,6 +539,41 @@ class Admin_Pages {
             }
 
         }
+
+    }
+
+    /**
+     * Text for the excerpt metaboxes.
+     *
+     * @param  object $post
+     * @return string
+     */
+    public static function excerpt_text( $post ) {
+    ?>
+        <label class="screen-reader-text" for="excerpt"><?php _e( 'Abstract' ) ?></label>
+        <textarea rows="1" cols="40" name="excerpt" tabindex="6" id="excerpt"><?php echo $post->post_excerpt; // textarea_escaped ?></textarea>
+
+        <?php echo sprintf( '<p>%1s</p>', __( 'Add a description for internal use and for search engines.', 'amcd-plugin' ) );
+
+    }
+
+    /**
+     * Metabox text putput.
+     *
+     * @param  string $post_type
+     * @param  object $post
+     * @return void
+     */
+    public function customize_metaboxes( $post_type, $post ) {
+
+        global $wp_meta_boxes;
+
+        $wp_meta_boxes[ 'post' ][ 'normal' ][ 'core' ][ 'postexcerpt' ][ 'title' ]    = 'Post Description';
+        $wp_meta_boxes[ 'post' ][ 'normal' ][ 'core' ][ 'postexcerpt' ][ 'id' ]       = 'postabstract';
+        $wp_meta_boxes[ 'post' ][ 'normal' ][ 'core' ][ 'postexcerpt' ][ 'callback' ] = [ $this, 'excerpt_text' ];
+        $wp_meta_boxes[ 'page' ][ 'normal' ][ 'core' ][ 'postexcerpt' ][ 'title' ]    = 'Page Description';
+        $wp_meta_boxes[ 'page' ][ 'normal' ][ 'core' ][ 'postexcerpt' ][ 'id' ]       = 'postabstract';
+        $wp_meta_boxes[ 'page' ][ 'normal' ][ 'core' ][ 'postexcerpt' ][ 'callback' ] = [ $this, 'excerpt_text' ];
 
     }
 

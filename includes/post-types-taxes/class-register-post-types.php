@@ -97,7 +97,7 @@ final class Post_Types_Register {
 			'map_meta_cap'        => true,
 			'hierarchical'        => false,
 			'rewrite'             => [
-				'slug'       => 'projects',
+				'slug'       => 'features',
 				'with_front' => true
 			],
 			'query_var'           => true,
