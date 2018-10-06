@@ -109,14 +109,14 @@ class Media {
 	public function image_sizes() {
 
 		// For link embedding and sharing on social sites.
-		add_image_size( __( 'Meta Image', 'amcd-plugin' ), 1200, 630, true );
+		add_image_size( __( 'meta-image', 'amcd-plugin' ), 1200, 630, true );
 
 		/**
 		 * For use as featured image in admin columns.
 		 *
 		 * @see admin/class-admin-pages.php
 		 */
-		add_image_size( __( 'Column Thumbnail', 'amcd-plugin' ), 48, 48, true );
+		add_image_size( __( 'column-thumbnail', 'amcd-plugin' ), 48, 48, true );
 
 	}
 
