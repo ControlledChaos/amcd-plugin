@@ -174,7 +174,7 @@ class Alana_Commercials_Fields {
 						'name'              => 'amcd_commercial_thumbnail',
 						'type'              => 'image',
 						'instructions'      => '',
-						'required'          => 1,
+						'required'          => 0,
 						'conditional_logic' => 0,
 						'wrapper'           => [
 							'width' => '',

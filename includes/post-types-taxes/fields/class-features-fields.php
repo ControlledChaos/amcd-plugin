@@ -156,7 +156,7 @@ class Alana_Features {
 						'name'              => 'amcd_project_image',
 						'type'              => 'image',
 						'instructions'      => __( 'Minimum 960 X 540 pixels.', 'amcd-plugin' ),
-						'required'          => 1,
+						'required'          => 0,
 						'conditional_logic' => 0,
 						'wrapper'           => [
 							'width' => '',
