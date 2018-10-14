@@ -135,10 +135,10 @@ class Alana_Commercials_Fields {
 					],
 					[
 						'key'               => 'field_5948b7338fbe4',
-						'label'             => __( 'Vimeo ID', 'amcd-plugin' ),
+						'label'             => __( 'Vimeo URL', 'amcd-plugin' ),
 						'name'              => 'amcd_commercial_vimeo_id',
-						'type'              => 'text',
-						'instructions'      => '',
+						'type'              => 'url',
+						'instructions'      => __( 'Enter the basic URL for the Vimeo video.', 'amcd-plugin' ),
 						'required'          => 1,
 						'conditional_logic' => 0,
 						'wrapper'           => [
@@ -147,10 +147,7 @@ class Alana_Commercials_Fields {
 							'id'    => '',
 						],
 						'default_value'     => '',
-						'placeholder'       => '',
-						'prepend'           => '',
-						'append'            => '',
-						'maxlength'         => '',
+						'placeholder'       => 'https://vimeo.com/123456789',
 					],
 					[
 						'key'               => 'field_5982732d62220',
@@ -173,7 +170,7 @@ class Alana_Commercials_Fields {
 						'label'             => __( 'Screenshot', 'amcd-plugin' ),
 						'name'              => 'amcd_commercial_thumbnail',
 						'type'              => 'image',
-						'instructions'      => '',
+						'instructions'      => __( 'If no image is uploaded then the screenshot from Vimeo will be used.', 'amcd-plugin' ),
 						'required'          => 0,
 						'conditional_logic' => 0,
 						'wrapper'           => [
