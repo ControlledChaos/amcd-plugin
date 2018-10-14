@@ -32,11 +32,14 @@ class Alana_Contact_Page_Fields {
     	$this->fields();
 
 	}
-	
+
 	/**
 	 * Register fields.
 	 */
 	public function fields() {
+
+		$page = get_page_by_path( 'contact' );
+		$id   = $page->ID;
 
 		if ( function_exists( 'acf_add_local_field_group' ) ) :
 
@@ -101,7 +104,7 @@ class Alana_Contact_Page_Fields {
 						'name'              => 'amcd_agency',
 						'type'              => 'repeater',
 						'instructions'      => '',
-						'required'          => 1,
+						'required' => 1,
 						'conditional_logic' => 0,
 						'wrapper'           => [
 							'width' => '',
@@ -120,7 +123,7 @@ class Alana_Contact_Page_Fields {
 								'name'              => 'amcd_agency_name',
 								'type'              => 'text',
 								'instructions'      => '',
-								'required'          => 1,
+								'required' => 1,
 								'conditional_logic' => 0,
 								'wrapper'           => [
 									'width' => '',
@@ -201,7 +204,7 @@ class Alana_Contact_Page_Fields {
 										'name'              => 'amcd_agent_name',
 										'type'              => 'text',
 										'instructions'      => '',
-										'required'          => 1,
+										'required' => 1,
 										'conditional_logic' => 0,
 										'wrapper'           => [
 											'width' => '',
@@ -220,7 +223,7 @@ class Alana_Contact_Page_Fields {
 										'name'              => 'amcd_agent_department',
 										'type'              => 'text',
 										'instructions'      => __( 'Film, TV, Commercial etc.', 'amcd-plugin' ),
-										'required'          => 1,
+										'required' => 1,
 										'conditional_logic' => 0,
 										'wrapper'           => [
 											'width' => '',
@@ -239,7 +242,7 @@ class Alana_Contact_Page_Fields {
 										'name'              => 'amcd_agent_phone',
 										'type'              => 'text',
 										'instructions'      => __( 'Use dashes only to make the number a link on mobile devices.', 'amcd-plugin' ),
-										'required'          => 1,
+										'required' => 1,
 										'conditional_logic' => 0,
 										'wrapper'           => [
 											'width' => '',
@@ -258,7 +261,7 @@ class Alana_Contact_Page_Fields {
 										'name'              => 'amcd_agent_email',
 										'type'              => 'email',
 										'instructions'      => '',
-										'required'          => 1,
+										'required' => 1,
 										'conditional_logic' => 0,
 										'wrapper'           => [
 											'width' => '',
@@ -384,14 +387,21 @@ class Alana_Contact_Page_Fields {
 					],
 				],
 				'location' => [
+				[
 					[
-						[
-							'param'    => 'page_template',
-							'operator' => '==',
-							'value'    => 'page-templates/page-contact.php',
-						],
+						'param'    => 'page_template',
+						'operator' => '==',
+						'value'    => 'page-templates/page-contact.php',
 					],
 				],
+				[
+					[
+						'param'    => 'page',
+						'operator' => '==',
+						'value'    => $id,
+					],
+				],
+			],
 				'menu_order'            => 0,
 				'position'              => 'acf_after_title',
 				'style'                 => 'seamless',
