@@ -216,73 +216,13 @@ class Alana_Features {
 						'endpoint'          => 0,
 					],
 					[
-						'key'               => 'field_5ba6c04ec02a1',
-						'label'             => 'Video Source',
-						'name'              => 'amcd_video_source',
-						'type'              => 'radio',
-						'instructions'      => '',
-						'required'          => 0,
-						'conditional_logic' => 0,
-						'wrapper'           => [
-							'width' => '',
-							'class' => '',
-							'id'    => '',
-						],
-						'choices'           => [
-							'vimeo'   => 'Vimeo',
-							'youtube' => 'YouTube',
-							'none'    => 'None'
-						],
-						'allow_null'        => 0,
-						'other_choice'      => 0,
-						'default_value'     => '',
-						'layout'            => 'horizontal',
-						'return_format'     => 'value',
-						'save_other_choice' => 0,
-					],
-					[
 						'key'               => 'field_5948b2c4f2479',
 						'label'             => 'Vimeo ID',
 						'name'              => 'amcd_project_vimeo_id',
 						'type'              => 'text',
 						'instructions'      => 'Example in red: https://vimeo.com/<strong style="color: #d00;">12345678</strong>',
 						'required'          => 0,
-						'conditional_logic' => [
-							[
-								[
-									'field'    => 'field_5ba6c04ec02a1',
-									'operator' => '==',
-									'value'    => 'vimeo',
-								],
-							],
-						],
-						'wrapper'           => [
-							'width' => '',
-							'class' => '',
-							'id'    => '',
-						],
-						'default_value'     => '',
-						'placeholder'       => '',
-						'prepend'           => '',
-						'append'            => '',
-						'maxlength'         => '',
-					],
-					[
-						'key'               => 'field_5ba6c0cfc02a2',
-						'label'             => 'YouTube ID',
-						'name'              => 'amcd_project_youtube_id',
-						'type'              => 'text',
-						'instructions'      => 'Example in red: https://www.youtube.com/watch?v=<strong style="color: #d00;">123abc456de</strong>',
-						'required'          => 0,
-						'conditional_logic' => [
-							[
-								[
-									'field'    => 'field_5ba6c04ec02a1',
-									'operator' => '==',
-									'value'    => 'youtube',
-								],
-							],
-						],
+						'conditional_logic' => 0,
 						'wrapper'           => [
 							'width' => '',
 							'class' => '',
