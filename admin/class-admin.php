@@ -71,10 +71,13 @@ class Admin {
 		// Redirect theme & plugin editor pages.
 		add_action( 'admin_init', [ $this, 'redirect_editor_pages' ] );
 
-		// Remove the WordPress logo from the admin bar.
+		// Remove the WordPress links manager.
+		add_action( 'admin_menu', [ $this, 'remove_links_manager' ] );
+
+		// Remove the WordPress logo from the admin toolbar.
 		add_action( 'admin_bar_menu', [ $this, 'remove_wp_logo' ], 999 );
 
-		// Remove search from frontend admin toolbar.
+		// Remove search from admin toolbar.
 		add_action( 'wp_before_admin_bar_render', [ $this, 'adminbar_search' ] );
 
 		// Hide the WordPress update notification to all but admins.
@@ -188,7 +191,23 @@ class Admin {
 	}
 
 	/**
-	 * Remove the WordPress logo from the admin bar.
+	 * Remove the WordPress links manager.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  object $wp_admin_bar
+	 * @return void
+	 *
+	 * @todo Make this optional on the Site Settings screen.
+	 */
+	public function remove_links_manager() {
+
+		remove_menu_page( 'link-manager.php' );
+
+	}
+
+	/**
+	 * Remove the WordPress logo from the admin toolbar.
 	 *
 	 * @since  1.0.0
 	 * @access public
@@ -200,11 +219,12 @@ class Admin {
 	public function remove_wp_logo( $wp_admin_bar ) {
 
 		$wp_admin_bar->remove_node( 'wp-logo' );
+		$wp_admin_bar->remove_node( 'comments' );
 
 	}
 
 	/**
-	 * Remove the search bar from the frontend admin toolbar.
+	 * Remove the search bar from the admin toolbar.
 	 *
 	 * @since  1.0.0
 	 * @access public

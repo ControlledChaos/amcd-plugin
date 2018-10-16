@@ -86,6 +86,12 @@ class Frontend {
 		// Add Fancybox attributes to attachment page image link.
 		add_action( 'wp_footer', [ $this, 'attachment_fancybox' ] );
 
+		// Remove the WordPress logo from the admin toolbar.
+		add_action( 'admin_bar_menu', [ $this, 'remove_wp_logo' ], 999 );
+
+		// Remove search from admin toolbar.
+		add_action( 'wp_before_admin_bar_render', [ $this, 'adminbar_search' ] );
+
 	}
 
 	/**
@@ -196,6 +202,40 @@ class Frontend {
 			</script>
 
 		<?php }
+
+	}
+
+	/**
+	 * Remove the WordPress logo from the admin bar.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @param  object $wp_admin_bar
+	 * @return void
+	 *
+	 * @todo Make this optional on the Site Settings screen.
+	 */
+	public function remove_wp_logo( $wp_admin_bar ) {
+
+		$wp_admin_bar->remove_node( 'wp-logo' );
+
+	}
+
+	/**
+	 * Remove the search bar from the frontend admin toolbar.
+	 *
+	 * @since  1.0.0
+	 * @access public
+	 * @global object wp_admin_bar
+	 * @return void
+	 *
+	 * @todo Make this optional on the Site Settings screen.
+	 */
+	public function adminbar_search() {
+
+		global $wp_admin_bar;
+
+		$wp_admin_bar->remove_menu( 'search' );
 
 	}
 
