@@ -87,8 +87,12 @@ class Meta_Image {
 		if ( class_exists( 'acf_pro' ) || ( class_exists( 'acf' ) && class_exists( 'acf_options_page' ) ) ) {
 
 			// Get the ACF image fields.
-			$blog_image    = get_field( 'amcd_meta_blog_image', 'option' );
-			$default_image = get_field( 'amcd_meta_default_image', 'option' );
+			$blog_image       = get_field( 'amcd_meta_blog_image', 'option' );
+			$default_image    = get_field( 'amcd_meta_default_image', 'option' );
+			$feature_image    = get_field( 'amcd_project_image' );
+			$feature_vimeo    = get_field( 'amcd_project_vimeo_id' );
+			$commercial_image = get_field( 'amcd_commercial_thumbnail' );
+			$commercial_vimeo = get_field( 'amcd_commercial_vimeo_id' );
 
 			/**
 			 * Conditionally get images.
@@ -101,17 +105,27 @@ class Meta_Image {
 
 			// If in the blog index and if the Blog Image field is not empty.
 			if ( is_home() && ! empty( $blog_image ) && is_array( $blog_image ) ) {
-				$size  = 'Meta Image';
-				$src   = $blog_image['sizes'][ $size ];
+				$size = 'meta-image';
+				$src  = $blog_image['sizes'][$size];
 
 			// If in an archive and if the Default Image field is not empty.
-			} elseif ( is_archive() && ! empty( $default_image ) && is_array( $blog_image ) ) {
-				$size  = 'Meta Image';
-				$src   = $default_image['sizes'][ $size ];
+			} elseif ( is_archive() && ! empty( $default_image ) && is_array( $default_image ) ) {
+				$size = 'meta-image';
+				$src  = $default_image['sizes'][$size];
+
+			// If on a single Feature page.
+			} elseif ( is_singular( 'amcd_features' ) && ! empty( $feature_image ) ) {
+				$size = 'meta-image';
+				$src  = $feature_image['sizes'][$size];
+
+			// If on a single Commercial page and a thumbnail image has been selected.
+			} elseif ( is_singular( 'amcd_commercials' ) && ! empty( $commercial_image ) ) {
+				$size = 'meta-image';
+				$src  = $commercial_image['sizes'][$size];
 
 			// If on singular pages with a featured image, but not 404.
 			} elseif ( is_singular() && has_post_thumbnail() && ! is_404() ) {
-				$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'Meta Image', [ 1200, 630 ], true, '' );
+				$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'meta-image', [ 1200, 630 ], true, '' );
 				$src   = $image[0];
 
 			/**
@@ -119,8 +133,8 @@ class Meta_Image {
 			 * the Default Image field is not empty, but not 404.
 			 */
 			} elseif ( is_singular() && ! has_post_thumbnail() && ! empty( $default_image ) && is_array( $default_image ) && ! is_404() ) {
-				$size  = 'Meta Image';
-				$src   = $default_image['sizes'][ $size ];
+				$size  = 'meta-image';
+				$src   = $default_image['sizes'][$size];
 
 			// Otherwise use the image path defined in the core plugin file.
 			} else {
@@ -140,7 +154,7 @@ class Meta_Image {
 			 * the 404 page will use the default image.
 			 */
 			if ( ! is_404() ) {
-				$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'Meta Image', [ 1200, 630 ], true, '' );
+				$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'meta-image', [ 1200, 630 ], true, '' );
 			}
 
 			// Use the featured image on singular pages if there is one.
