@@ -67,6 +67,12 @@ final class Init {
 		remove_filter( 'the_content', 'capital_P_dangit', 11 );
 		remove_filter( 'comment_text', 'capital_P_dangit', 31 );
 
+		// Login heading URL.
+		add_filter( 'login_headerurl', [ $this, 'login_url' ] );
+
+		// Login heading.
+		add_filter( 'login_headertitle', [ $this, 'login_heading' ] );
+
 		// Remove contextual help tabs.
 		add_filter( 'contextual_help', [ $this, 'remove_help_tabs' ], 999, 3 );
 		add_filter( 'screen_options_show_screen', [ $this, 'remove_screen_options' ], 10, 2 );
@@ -113,6 +119,32 @@ final class Init {
 
 		// Dev and maintenance tools.
 		require_once AMCD_PATH . 'includes/tools/class-tools.php';
+
+	}
+
+	/**
+	 * Login heading URL.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @return string Returns the URL of the site.
+	 */
+	public function login_url() {
+
+		return site_url();
+
+	}
+
+	/**
+	 * Login heading.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @return string Returns the name of the site.
+	 */
+	public function login_heading() {
+
+		return get_bloginfo( 'name' );
 
 	}
 
