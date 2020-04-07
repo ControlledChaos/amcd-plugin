@@ -72,6 +72,14 @@ if ( $contact_page ) {
             </p>
 		</li>
 		<li>
+            <h4><?php _e( 'Music Videos', 'amcd-plugin' ); ?></h4>
+            <div class="amcd-dashboard-post-type-actions-icon videos-icon"><span class="dashicons dashicons-format-audio"></span></div>
+            <p>
+                <a href="<?php echo admin_url( 'post-new.php?post_type=amcd_videos' ); ?>"><?php _e( 'Add New', 'amcd-plugin' ); ?></a>
+                <a href="<?php echo admin_url( 'edit.php?post_type=amcd_videos' ); ?>"><?php _e( 'View List', 'amcd-plugin' ); ?></a>
+            </p>
+		</li>
+		<li>
             <h4><?php _e( 'Media', 'amcd-plugin' ); ?></h4>
             <div class="amcd-dashboard-content-actions-icon front-icon"><span class="dashicons dashicons-format-image"></span></div>
             <p>
@@ -79,12 +87,5 @@ if ( $contact_page ) {
                 <a href="<?php echo admin_url( 'upload.php' ); ?>"><?php _e( 'Manage', 'amcd-plugin' ); ?></a>
             </p>
 		</li>
-		<li>
-            <h4><?php _e( 'Contact', 'amcd-plugin' ); ?></h4>
-            <div class="amcd-dashboard-content-actions-icon contact-icon"><span class="dashicons dashicons-email"></span></div>
-            <p>
-                <a href="<?php echo $contact_link; ?>"><?php _e( 'Manage Info', 'amcd-plugin' ); ?></a>
-            </p>
-        </li>
     </ul>
 </div>
