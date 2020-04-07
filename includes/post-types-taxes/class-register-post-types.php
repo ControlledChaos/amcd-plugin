@@ -111,9 +111,9 @@ final class Post_Types_Register {
         ];
 
 		register_post_type(
-            'amcd_features',
-            $args
-        );
+			'amcd_features',
+			$args
+		);
 
 		/**
 		 * Post Type: Commercials.
@@ -176,9 +176,74 @@ final class Post_Types_Register {
 			]
 		];
 		register_post_type(
-            'amcd_commercials',
-            $args
-        );
+			'amcd_commercials',
+			$args
+		);
+
+		/**
+		 * Post Type: Videos.
+		 */
+
+		$labels = [
+			'name'                  => __( 'Videos', 'amcd-plugin' ),
+			'singular_name'         => __( 'Video', 'amcd-plugin' ),
+			'menu_name'             => __( 'Music Videos', 'amcd-plugin' ),
+			'all_items'             => __( 'All Videos', 'amcd-plugin' ),
+			'add_new'               => __( 'Add New', 'amcd-plugin' ),
+			'add_new_item'          => __( 'Add New Video', 'amcd-plugin' ),
+			'edit_item'             => __( 'Edit Video', 'amcd-plugin' ),
+			'new_item'              => __( 'New Video', 'amcd-plugin' ),
+			'view_item'             => __( 'View Video', 'amcd-plugin' ),
+			'view_items'            => __( 'View Videos', 'amcd-plugin' ),
+			'search_items'          => __( 'Search Videos', 'amcd-plugin' ),
+			'not_found'             => __( 'No Videos Found', 'amcd-plugin' ),
+			'not_found_in_trash'    => __( 'No Videos Found in Trash', 'amcd-plugin' ),
+			'featured_image'        => __( 'Featured image for this video', 'amcd-plugin' ),
+			'set_featured_image'    => __( 'Set featured image for this video', 'amcd-plugin' ),
+			'remove_featured_image' => __( 'Remove featured image for this video', 'amcd-plugin' ),
+			'use_featured_image'    => __( 'Use as featured image for this video', 'amcd-plugin' ),
+			'archives'              => __( 'Video archives', 'amcd-plugin' ),
+			'insert_into_item'      => __( 'Insert into Video', 'amcd-plugin' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this Video', 'amcd-plugin' ),
+			'filter_items_list'     => __( 'Filter Videos', 'amcd-plugin' ),
+			'items_list_navigation' => __( 'Videos list navigation', 'amcd-plugin' ),
+			'items_list'            => __( 'Videos list', 'amcd-plugin' ),
+			'attributes'            => __( 'Video Attributes', 'amcd-plugin' ),
+			'parent_item_colon'     => __( 'Parent Video', 'amcd-plugin' ),
+		];
+
+		$args = [
+			'label'               => __( 'Music Videos', 'amcd-plugin' ),
+			'labels'              => $labels,
+			'description'         => __( '', 'amcd-plugin' ),
+			'public'              => true,
+			'publicly_queryable'  => true,
+			'show_ui'             => true,
+			'show_in_rest'        => false,
+			'rest_base'           => '',
+			'has_archive'         => true,
+			'show_in_menu'        => true,
+			'exclude_from_search' => false,
+			'capability_type'     => 'post',
+			'map_meta_cap'        => true,
+			'hierarchical'        => false,
+			'rewrite'             => [
+				'slug'       => 'videos',
+				'with_front' => true
+			],
+			'query_var'           => true,
+			'menu_position'       => 5,
+			'menu_icon'           => 'dashicons-format-audio',
+			'supports'            => [
+				'title',
+				'page-attributes',
+				'thumbnail'
+			]
+		];
+		register_post_type(
+			'amcd_videos',
+			$args
+		);
 
     }
 
